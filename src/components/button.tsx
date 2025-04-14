@@ -1,6 +1,7 @@
 import {PropsWithChildren} from "react";
 import {cn} from "@/src/utils";
 import Link from "next/link";
+import IconButton from './icon-button';
 
 export default function Button(
     {
@@ -44,3 +45,5 @@ const styles = {
         classNames,
     ),
 }
+
+Button.Icon = IconButton;

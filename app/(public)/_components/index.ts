@@ -1,4 +1,5 @@
 import Header from './header';
+import Footer from './footer';
 import HeroSection from './hero';
 import CooperatedCompaniesSection from './cooperated-companies';
 import SectionWithHeading from './section-with-heading';
@@ -15,5 +16,6 @@ export {
     SectionWithHeading,
     CooperatedCompaniesSection,
     HeroSection,
+    Footer,
     Header,
 }

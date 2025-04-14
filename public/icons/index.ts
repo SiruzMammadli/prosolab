@@ -6,8 +6,14 @@ import DollarIcon from '@/public/icons/dollar-icon.svg';
 import WebAppIcon from '@/public/icons/web-app-icon.svg';
 import MobileAppIcon from '@/public/icons/mobile-app-icon.svg';
 import DesktopAppIcon from '@/public/icons/desktop-app-icon.svg';
+import InstagramIcon from '@/public/icons/instagram-icon.svg';
+import FacebookIcon from '@/public/icons/facebook-icon.svg';
+import XLogoIcon from '@/public/icons/x-logo-icon.svg';
 
 export {
+    XLogoIcon,
+    FacebookIcon,
+    InstagramIcon,
     DesktopAppIcon,
     MobileAppIcon,
     WebAppIcon,

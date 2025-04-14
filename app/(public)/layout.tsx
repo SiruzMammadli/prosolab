@@ -1,4 +1,4 @@
-import {Header} from "@/app/(public)/_components";
+import {Footer, Header} from "@/app/(public)/_components";
 import {PropsWithChildren} from "react";
 
 export default ({children}: Readonly<PropsWithChildren>) => {
@@ -6,6 +6,7 @@ export default ({children}: Readonly<PropsWithChildren>) => {
         <>
             <Header/>
             {children}
+            <Footer/>
         </>
     )
 }
