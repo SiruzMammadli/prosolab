@@ -12,10 +12,10 @@ export default () => {
         setCurrentScroll(window.scrollY);
         const handleScroll = debounce(() => {
             setCurrentScroll(scroll => {
-                if (window.scrollY > scroll) {
+                if (window.scrollY > 50 && window.scrollY > scroll) {
                     setHeaderClasses("-translate-y-[90px]")
                 }
-                else setHeaderClasses("")
+                else setHeaderClasses("");
                 return window.scrollY;
             });
         }, 100);

@@ -11,7 +11,7 @@ export default (props: Readonly<PropsWithChildren<{ title: React.ReactNode; desc
 
             >
                 <header className="text-center w-[75%]">
-                    <h2 className="text-[40px] font-medium mb-2">
+                    <h2 className="text-[32px] md:text-[40px] font-medium mb-2">
                         {props.title}
                     </h2>
                     {props.description ? (

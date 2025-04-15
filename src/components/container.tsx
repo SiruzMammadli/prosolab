@@ -16,7 +16,7 @@ type ContainerProps = Readonly<PropsWithChildren<{
 
 const styles = {
     _: (classNames: ContainerProps["className"]) => cn(
-        'container mx-auto h-full',
+        'container px-[16px] sm:px-0 mx-auto h-full',
         classNames,
     ),
 }

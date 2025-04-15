@@ -8,7 +8,7 @@ export default () => {
         <SectionWithHeading
             title={<><TextGradient>Our Performance</TextGradient>&nbsp;at a Glance</>}
         >
-            <div className="grid grid-cols-3 gap-x-[64px] mt-6">
+            <div className="grid md:grid-cols-3 gap-[64px] mt-6">
                 {
                     performanceItems.map((item, key) => (
                         <PerformanceReviewOverall
@@ -35,7 +35,7 @@ const performanceItems: Array<PerformanceItem> = [
             <>
                 98
                 <PercentIcon
-                    className="w-[64px]! h-[64px]!"
+                    className="xl:w-[64px]! xl:h-[64px]! w-[48px]! h-[48px]!"
                 />
             </>
         ),
@@ -47,7 +47,7 @@ const performanceItems: Array<PerformanceItem> = [
             <>
                 500
                 <PlusIcon
-                    className="w-[64px]! h-[64px]!"
+                    className="xl:w-[64px]! xl:h-[64px]! w-[48px]! h-[48px]!"
                 />
             </>
         ),
@@ -59,7 +59,7 @@ const performanceItems: Array<PerformanceItem> = [
             <>
                 40
                 <PercentIcon
-                    className="w-[64px]! h-[64px]!"
+                    className="xl:w-[64px]! xl:h-[64px]! w-[48px]! h-[48px]!"
                 />
             </>
         ),
