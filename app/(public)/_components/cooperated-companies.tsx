@@ -7,15 +7,15 @@ import {Autoplay} from "swiper/modules";
 
 export default () => {
     return (
-        <section className="py-[60px]">
+        <section className="py-[30px_60px] md:py-[60px]">
             <Container>
                 <Flex
                     direction="column"
                     alignItems="center"
                     justifyContent="center"
-                    className="text-center gap-y-8 mx-auto"
+                    className="text-center gap-y-[32px] mx-auto"
                 >
-                    <h3 className="w-[50%] text-gray-500 text-[16px]">Delivering exceptional digital solutions and
+                    <h3 className="w-full lg:w-[50%] text-gray-500 text-[14px] lg:text-[16px]">Delivering exceptional digital solutions and
                         innovation to
                         companies across various industries,
                         driving their success and growth.</h3>
