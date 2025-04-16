@@ -7,7 +7,7 @@ import {Autoplay} from "swiper/modules";
 
 export default () => {
     return (
-        <section className="py-[30px_60px] md:py-[60px]">
+        <section className="py-[30px] md:py-[60px]">
             <Container>
                 <Flex
                     direction="column"

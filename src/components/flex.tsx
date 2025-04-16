@@ -30,6 +30,7 @@ const styles = {
             !props.alignItems && props.direction === 'column' && 'items-stretch',
             props.alignItems === 'flex-start' && 'items-start',
             props.alignItems === 'flex-end' && 'items-end',
+            props.alignItems === 'stretch' && 'items-stretch',
         ],
         [
             props.justifyContent === 'flex-start' && 'justify-start',

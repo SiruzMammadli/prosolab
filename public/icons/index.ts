@@ -9,8 +9,10 @@ import DesktopAppIcon from '@/public/icons/desktop-app-icon.svg';
 import InstagramIcon from '@/public/icons/instagram-icon.svg';
 import FacebookIcon from '@/public/icons/facebook-icon.svg';
 import XLogoIcon from '@/public/icons/x-logo-icon.svg';
+import CheckIcon from '@/public/icons/check-icon.svg';
 
 export {
+    CheckIcon,
     XLogoIcon,
     FacebookIcon,
     InstagramIcon,

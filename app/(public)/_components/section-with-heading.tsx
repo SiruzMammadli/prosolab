@@ -3,7 +3,7 @@ import {PropsWithChildren} from "react";
 
 export default (props: Readonly<PropsWithChildren<{ title: React.ReactNode; description?: React.ReactNode }>>) => {
     return (
-        <section className="py-[60px]">
+        <section className="py-[30px] md:py-[60px]">
             <Flex
                 as={Container}
                 direction="column"
