@@ -21,7 +21,7 @@ export default ({counter, description, title}: Readonly<{ counter: React.ReactNo
                 className="gap-y-[16px]"
             >
                 <Flex as="h3" className="xl:text-[96px] text-[72px] font-medium leading-[1]">{counter}</Flex>
-                <p className="text-gray-500 w-[60%] md:w-full">{description}</p>
+                <p className="text-gray-500">{description}</p>
             </Flex>
             <span className="text-blue-500 font-medium text-[16px]">{title}</span>
         </Flex>
