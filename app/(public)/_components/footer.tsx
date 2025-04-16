@@ -10,7 +10,8 @@ export default () => {
                     as="section"
                     alignItems="flex-start"
                     justifyContent="space-between"
-                    className="h-[500px] py-[48px_24px]"
+                    direction="column"
+                    className="py-[30px] md:flex-row gap-y-[48px]"
                 >
                     <Flex
                         as="section"
@@ -46,13 +47,13 @@ export default () => {
                     <Flex
                         as="section"
                         alignItems="flex-start"
-                        className="gap-[64px]"
+                        className="gap-x-[64px] gap-y-[32px] flex-wrap"
                     >
                         {Array.from(footerArticles).map((article: FooterArticle, key: number) => (
                             <Flex
                                 as="article"
                                 direction="column"
-                                className="gap-y-[8px]"
+                                className="gap-y-[8px] shrink-0"
                                 key={key}
                             >
                                 <h3 className="text-[16px] font-medium">{article.title}</h3>
@@ -72,17 +73,22 @@ export default () => {
                         ))}
                     </Flex>
                 </Flex>
-                <Flex as="section" justifyContent="space-between" className="py-[24px]">
-                    <p>@2025 Prosolab, All Right Reserved</p>
+                <Flex
+                    as="section"
+                    justifyContent="space-between"
+                    alignItems="stretch"
+                    className="py-[24px] flex-col-reverse gap-y-[16px] sm:flex-row sm:items-center"
+                >
+                    <p className="text-[13px] md:text-[15px]">@2025 Prosolab, All Right Reserved</p>
                     <Flex as="ul" className="gap-[16px]">
                         <li>
-                            <Link href="#">Privacy</Link>
+                            <Link href="#" className="text-[13px] md:text-[15px]">Privacy</Link>
                         </li>
                         <li>
-                            <Link href="#">Terms</Link>
+                            <Link href="#" className="text-[13px] md:text-[15px]">Terms</Link>
                         </li>
                         <li>
-                            <Link href="#">Cookies</Link>
+                            <Link href="#" className="text-[13px] md:text-[15px]">Cookies</Link>
                         </li>
 
                     </Flex>
