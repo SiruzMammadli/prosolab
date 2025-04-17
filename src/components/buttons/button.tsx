@@ -10,6 +10,7 @@ export default function Button(
         onClick,
         className: classes,
         variant = 'primary',
+        type = 'button',
         ...props
     }: Readonly<PropsWithChildren<ButtonProps>>
 ) {
@@ -18,7 +19,7 @@ export default function Button(
             {children}
         </Link>
     ) : (
-        <button className={styles._(classes, variant)} onClick={onClick} {...props}>
+        <button type={type} className={styles._(classes, variant)} onClick={onClick} {...props}>
             {children}
         </button>
     )
@@ -29,6 +30,7 @@ type ButtonProps = {
     onClick?: () => (void | Promise<void>);
     className?: string;
     variant?: "primary" | "outlined" | "gradient";
+    type?: "button" | "submit" | "reset";
 }
 
 const styles = {
