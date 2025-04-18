@@ -6,10 +6,12 @@ import SectionWithHeading from './section-with-heading';
 import OurPerformanceSection from './our-performance';
 import OurExpertServicesSection from './our-expert-services';
 import OurPlansSection from './our-plans';
-import OurClientsSaying from './our-clients-saying';
+import OurClientsSayingSection from './our-clients-saying';
+import ConnectWithProsolabSection from './connect-with-prosolab';
 
 export {
-    OurClientsSaying,
+    ConnectWithProsolabSection,
+    OurClientsSayingSection,
     OurPlansSection,
     OurExpertServicesSection,
     OurPerformanceSection,

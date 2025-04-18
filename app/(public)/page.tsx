@@ -1,6 +1,7 @@
 import {
+    ConnectWithProsolabSection,
     CooperatedCompaniesSection,
-    HeroSection, OurClientsSaying,
+    HeroSection, OurClientsSayingSection,
     OurExpertServicesSection,
     OurPerformanceSection, OurPlansSection
 } from "@/app/(public)/_components";
@@ -9,11 +10,12 @@ export default () => {
     return (
         <>
             <HeroSection/>
-            <CooperatedCompaniesSection/>
+            {/*<CooperatedCompaniesSection/>*/}
             <OurPerformanceSection/>
-            <OurExpertServicesSection/>
+            {/*<OurExpertServicesSection/>*/}
             <OurPlansSection/>
-            <OurClientsSaying/>
+            {/*<OurClientsSayingSection/>*/}
+            <ConnectWithProsolabSection/>
         </>
     );
 }
