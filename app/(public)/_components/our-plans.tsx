@@ -31,19 +31,19 @@ export default () => {
                             </Flex>
                             <p className="text-gray-700 text-[14px]">/ per month</p>
                         </Flex>
-                        <Flex
-                            className="gap-[16px] mt-[48px] flex-col xl:flex-row"
-                            alignItems="stretch"
-                        >
-                            <Button className="xl:flex-1">
-                                <span>Subscribe</span>
-                                <ArrowRightIcon className="w-[20px]! h-[20px]!"/>
-                            </Button>
-                            <Button className="xl:flex-1" variant="outlined">
-                                <PhoneIcon className="w-[20px]! h-[20px]!"/>
-                                <span>Book a Consultation</span>
-                            </Button>
-                        </Flex>
+                        {/*<Flex*/}
+                        {/*    className="gap-[16px] mt-[48px] flex-col xl:flex-row"*/}
+                        {/*    alignItems="stretch"*/}
+                        {/*>*/}
+                        {/*    <Button className="xl:flex-1">*/}
+                        {/*        <span>Subscribe</span>*/}
+                        {/*        <ArrowRightIcon className="w-[20px]! h-[20px]!"/>*/}
+                        {/*    </Button>*/}
+                        {/*    <Button className="xl:flex-1" variant="outlined">*/}
+                        {/*        <PhoneIcon className="w-[20px]! h-[20px]!"/>*/}
+                        {/*        <span>Book a Consultation</span>*/}
+                        {/*    </Button>*/}
+                        {/*</Flex>*/}
                     </div>
                     <div>
                         <Flex
@@ -69,14 +69,14 @@ export default () => {
                         </Flex>
                         <p className="text-[14px] text-gray-500">For businesses with specific project requirements or
                             one-time development needs.</p>
-                        <Flex
-                            className="gap-[16px] mt-[48px]"
-                        >
-                            <Button className="flex-1" variant="outlined">
-                                <PhoneIcon className="w-[20px]! h-[20px]!"/>
-                                <span>Book a Consultation</span>
-                            </Button>
-                        </Flex>
+                        {/*<Flex*/}
+                        {/*    className="gap-[16px] mt-[48px]"*/}
+                        {/*>*/}
+                        {/*    <Button className="flex-1" variant="outlined">*/}
+                        {/*        <PhoneIcon className="w-[20px]! h-[20px]!"/>*/}
+                        {/*        <span>Book a Consultation</span>*/}
+                        {/*    </Button>*/}
+                        {/*</Flex>*/}
                     </div>
                     <div>
                         <Flex

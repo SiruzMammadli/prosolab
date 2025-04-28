@@ -10,8 +10,10 @@ import InstagramIcon from '@/public/icons/instagram-icon.svg';
 import FacebookIcon from '@/public/icons/facebook-icon.svg';
 import XLogoIcon from '@/public/icons/x-logo-icon.svg';
 import CheckIcon from '@/public/icons/check-icon.svg';
+import ChevronLeftIcon from '@/public/icons/chevron-left-icon.svg';
 
 export {
+    ChevronLeftIcon,
     CheckIcon,
     XLogoIcon,
     FacebookIcon,

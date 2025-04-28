@@ -9,7 +9,7 @@ export default (props: Readonly<CheckboxLabeledProps>) => {
             "gap-x-[8px]",
             props.className
         )}>
-            <Checkbox id={uuid} />
+            <Checkbox id={uuid} onChange={props.onChange}/>
             <label htmlFor={uuid} className="cursor-pointer">{props.label}</label>
         </Flex>
     )
@@ -19,4 +19,5 @@ type CheckboxLabeledProps = {
     label: string;
     as?: keyof JSX.IntrinsicElements;
     className?: string;
+    onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void;
 }

@@ -2,6 +2,7 @@ import {PropsWithChildren} from "react";
 import {cn} from "@/src/utils";
 import Link from "next/link";
 import IconButton from './icon-button';
+import {Spinner} from "@/src/components";
 
 export default function Button(
     {
@@ -15,22 +16,34 @@ export default function Button(
     }: Readonly<PropsWithChildren<ButtonProps>>
 ) {
     return href ? (
-        <Link href={href} className={styles._(classes, variant)} {...props}>
-            {children}
+        <Link aria-disabled={props.disabled} href={href} className={styles._(classes, variant)} {...props}>
+            {props.disabled ? (
+                <>
+                    <Spinner/>
+                    {props.spinnercontent ? <span>{props.spinnercontent}</span> : null}
+                </>
+            ) : children}
         </Link>
     ) : (
-        <button type={type} className={styles._(classes, variant)} onClick={onClick} {...props}>
-            {children}
+        <button aria-disabled={props.disabled} type={type} className={styles._(classes, variant)} onClick={onClick} {...props}>
+            {props.disabled ? (
+                <>
+                    <Spinner/>
+                    {props.spinnercontent ? <span>{props.spinnercontent}</span> : null}
+                </>
+            ) : children}
         </button>
     )
 }
 
 type ButtonProps = {
     href?: string;
-    onClick?: () => (void | Promise<void>);
+    onClick?: (event: React.MouseEvent<HTMLButtonElement>) => (void | Promise<void>);
     className?: string;
     variant?: "primary" | "outlined" | "gradient";
     type?: "button" | "submit" | "reset";
+    disabled?: boolean;
+    spinnercontent?: string;
 }
 
 const styles = {
@@ -44,6 +57,7 @@ const styles = {
                 'after:absolute after:inset-[2px] after:bg-black after:rounded-[10px] after:-z-1',
             ]
         ],
+        "[&[aria-disabled=true]]:pointer-events-none [&[aria-disabled=true]]:opacity-50",
         classNames,
     ),
 }

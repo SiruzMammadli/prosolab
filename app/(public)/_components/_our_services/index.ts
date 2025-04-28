@@ -1,4 +1,4 @@
-import ExpertServiceWidget, {type ExpertServiceWidgetType} from "./ExpertServiceWidget";
+import ExpertServiceWidget, {type ExpertServiceWidgetType} from "./expert-service-widget";
 
 export {
     ExpertServiceWidget,

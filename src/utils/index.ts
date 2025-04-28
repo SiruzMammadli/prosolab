@@ -18,3 +18,7 @@ export function debounce<T extends (...args: any[]) => void>(
         }, delay);
     };
 }
+
+export async function sleep(ms: number) {
+    return await new Promise((resolve) => setTimeout(resolve, ms));
+}

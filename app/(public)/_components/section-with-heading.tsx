@@ -15,7 +15,7 @@ export default (props: Readonly<PropsWithChildren<{ title: React.ReactNode; desc
                         {props.title}
                     </h2>
                     {props.description ? (
-                        <p className="text-[14px] md:text-[16px] text-gray-500">
+                        <p className="text-[14px] md:text-[15px] text-gray-500">
                             {props.description}
                         </p>
                     ) : null}

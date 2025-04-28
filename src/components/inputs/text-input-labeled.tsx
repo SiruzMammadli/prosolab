@@ -15,6 +15,8 @@ export default (props: Readonly<TextInputLabeledProps>) => {
             <TextInput
                 id={uuid}
                 placeholder={props.placeholder}
+                onChange={props.onChange}
+                name={props.name}
             />
         </div>
     )
@@ -24,4 +26,7 @@ export type TextInputLabeledProps = {
     label: string;
     placeholder?: string;
     className?: string;
+    onChange?: (event: React.ChangeEvent<HTMLInputElement>) => void;
+    name?: string;
+    type?: "text" | "password" | "email";
 }

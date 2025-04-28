@@ -6,8 +6,10 @@ import TextInputLabeled from './inputs/text-input-labeled';
 import Checkbox from './inputs/checkbox';
 import CheckboxLabeled from './inputs/checkbox-labeled';
 import Textarea from './inputs/textarea';
+import Spinner from './spinner';
 
 export {
+    Spinner,
     Textarea,
     CheckboxLabeled,
     Checkbox,
