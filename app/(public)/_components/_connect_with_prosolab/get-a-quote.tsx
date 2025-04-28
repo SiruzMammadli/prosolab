@@ -36,8 +36,8 @@ export const useQuote = () => {
 
 export default () => {
     const [inputValues, setInputValues] = useState<ContextValues["inputValues"]>(contextValues.inputValues);
-    const [selectedBudget, setSelectedBudget] = useState<ContextValues["selectedBudget"]>(contextValues.selectedBudget);
     const [checkedServices, setCheckedServices] = useState<ContextValues["checkedServices"]>(contextValues.checkedServices);
+    const [selectedBudget, setSelectedBudget] = useState<ContextValues["selectedBudget"]>(contextValues.selectedBudget);
     const [projectDetails, setProjectDetails] = useState<ContextValues["projectDetails"]>(contextValues.projectDetails);
 
     const {mutate, isPending} = useMutation({
@@ -63,6 +63,11 @@ export default () => {
         }
     });
 
+    const handleSubmit = () => {
+        const validation = validateQuote(inputValues, checkedServices, projectDetails)
+        if (validation.isSuccess) mutate()
+    }
+
     return (
         <GetAQuoteContext value={{
             selectedBudget,
@@ -85,7 +90,7 @@ export default () => {
                     <QuoteProjectDetails/>
                     <Button
                         variant="primary"
-                        onClick={() => mutate()}
+                        onClick={handleSubmit}
                         disabled={isPending}
                         spinnercontent="Processing..."
                     >
@@ -106,4 +111,27 @@ type ContextValues = {
     setSelectedBudget: React.Dispatch<React.SetStateAction<number>>;
     setInputValues: React.Dispatch<React.SetStateAction<{ email: string, fullname: string; }>>;
     setCheckedServices: React.Dispatch<React.SetStateAction<Map<string, boolean>>>;
+}
+
+function validateQuote(
+    inputValues: ContextValues["inputValues"],
+    checkedServices: ContextValues["checkedServices"],
+    projectDetails: ContextValues["projectDetails"]
+) {
+    const errors: {
+        fullname?: string;
+        email?: string;
+        checkedServices?: string;
+        selectedBudget?: string;
+        projectDetails?: string;
+    } = {};
+
+    if (!inputValues.fullname || inputValues.fullname.trim() === "") errors.fullname = "Fullname cannot be empty";
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    if (!inputValues.email || !emailRegex.test(inputValues.email)) errors.email = "Please enter a valid email address";
+    if (!checkedServices.size) errors.checkedServices = "Please select at least one service";
+    if (!projectDetails || projectDetails.trim() === "" || projectDetails.length < 10) errors.projectDetails = "Project details cannot be empty.";
+    const isSuccess = Object.keys(errors).length === 0;
+    if (!isSuccess) Object.values(errors).forEach((error) => { toast.error(error); });
+    return { isSuccess, errors };
 }
