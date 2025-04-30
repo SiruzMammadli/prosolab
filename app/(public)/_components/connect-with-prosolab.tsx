@@ -9,7 +9,7 @@ export default () => {
     const [activeTabId, setActiveTabId] = useState<number>(tabList[0].id);
 
     return (
-        <section id="get-a-quote" className="py-[30px] md:py-[60px]">
+        <section className="py-[30px] md:py-[60px]">
             <Flex
                 direction="column"
                 alignItems="center"
@@ -24,7 +24,7 @@ export default () => {
                         here to turn your vision into reality
                     </p>
                 </header>
-                <main className="w-full">
+                <main className="w-full" id="get-a-quote">
                     <div className="mt-[64px]">
                         <header className="mb-[16px]">
                             <Flex className="bg-gray-50 h-[50px] border-2 border-gray-100 rounded-xl p-[4px]">

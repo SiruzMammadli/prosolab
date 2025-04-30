@@ -32,7 +32,7 @@ export default () => {
             <Flex as={Container} justifyContent="space-between">
                 <Link href="/" className="text-2xl md:text-3xl font-semibold">PROSOLAB</Link>
                 <Flex>
-                    <Button className="h-10 px-4" href="/#get-a-quote">
+                    <Button className="h-[40px] px-4" href="/#get-a-quote">
                         Request a Quote
                     </Button>
                 </Flex>

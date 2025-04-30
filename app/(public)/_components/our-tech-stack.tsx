@@ -6,13 +6,16 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
+import {Button, Flex} from "@/src/components";
 
 export default () => {
-    const {data: techStackData} = useQuery({
+    const {data: techStackData, error, refetch} = useQuery({
         queryKey: ["technologies"],
         queryFn: async () => {
-            return (await axios.get("/api/v1/technologies")).data;
-        }
+            return (await axios.get("/api/v1/technologies", {timeout: 5000})).data;
+        },
+        refetchOnMount: false,
+        refetchOnWindowFocus: false,
     });
     return (
         <SectionWithHeading
@@ -20,13 +23,31 @@ export default () => {
             description="At Prosolab, we harness the power of the latest and most reliable technologies to build high-performing digital solutions. From front-end frameworks to back-end architectures and cloud platforms, our expertise spans a broad tech spectrum — ensuring speed, scalability, and seamless user experiences."
         >
             <div className="grid gap-y-2 mt-[64px]">
-                {techStackData ? techStackData.map((stack: TechStackData, key: number) => (
-                    <TechStackWidget
-                        key={key}
-                        stack={stack}
-                    />
-                )) : (
-                    <Skeleton count={2} className="h-[75px]" borderRadius={16}/>
+                {!error ? (
+                    techStackData ? techStackData.map((stack: TechStackData, key: number) => (
+                        <TechStackWidget
+                            key={key}
+                            stack={stack}
+                        />
+                    )) : (
+                        <Skeleton count={3} className="h-[75px]" borderRadius={16}/>
+                    )
+                ) : (
+                    <Flex
+                        direction="column"
+                        justifyContent="center"
+                        alignItems="center"
+                        className="text-[20px] font-medium gap-y-[8px]"
+                    >
+                        <h3>Oh no, something went wrong!</h3>
+                        <Button
+                            variant="outlined"
+                            className="h-[40px] text-[15px]"
+                            onClick={async () => {await refetch();}}
+                        >
+                            Refresh
+                        </Button>
+                    </Flex>
                 )}
             </div>
         </SectionWithHeading>

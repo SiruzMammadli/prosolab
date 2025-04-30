@@ -4,6 +4,25 @@ import {ExpertServiceWidget, type ExpertServiceWidgetType} from "@/app/(public)/
 import {MobileAppIcon, WebAppIcon} from "@/public/icons";
 import {Flex} from "@/src/components";
 
+export default () => {
+    return (
+        <SectionWithHeading
+            title={<>Our Expert Services:&nbsp;<TextGradient>Tailored for Your Success</TextGradient></>}
+            description="At Prosolab, we provide a wide range of digital services designed to elevate your business. From software development to seamless integrations, we ensure every solution is customized to meet you specific needs. Explore our services below"
+        >
+            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-[64px]">
+                {expertServiceWidgets.map((widget: ExpertServiceWidgetType, key: number) => (
+                    <ExpertServiceWidget
+                        key={key}
+                        icon={widget.icon}
+                        title={widget.title}
+                        description={widget.description}
+                    />
+                ))}
+            </div>
+        </SectionWithHeading>
+    )
+}
 
 const expertServiceWidgets: Array<ExpertServiceWidgetType> = [
     {
@@ -23,23 +42,3 @@ const expertServiceWidgets: Array<ExpertServiceWidgetType> = [
         description: "Build secure, scalable APIs with NodeJS, REST API, GraphQL and WebSockets to power your digital ecosystem."
     },
 ]
-
-export default () => {
-    return (
-        <SectionWithHeading
-            title={<>Our Expert Services:&nbsp;<TextGradient>Tailored for Your Success</TextGradient></>}
-            description="At Prosolab, we provide a wide range of digital services designed to elevate your business. From software development to seamless integrations, we ensure every solution is customized to meet you specific needs. Explore our 8 core services below"
-        >
-            <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-[64px]">
-                {expertServiceWidgets.map((widget: ExpertServiceWidgetType, key: number) => (
-                    <ExpertServiceWidget
-                        key={key}
-                        icon={widget.icon}
-                        title={widget.title}
-                        description={widget.description}
-                    />
-                ))}
-            </div>
-        </SectionWithHeading>
-    )
-}

@@ -20,9 +20,8 @@ export default () => {
                         <TextGradient>Development</TextGradient>
                     </h1>
                     <p className="font-light text-gray-500 text-[14px] md:text-[15px]">
-                        From web and mobile applications to third-party integrations and Discord bot development, we
-                        craft scalable, custom solutions to drive your business forward. Specializing in React and
-                        modern technologies, we ensure seamless, future-proof digital experiences.
+                        From web and mobile applications to third-party integrations, we
+                        craft scalable, custom solutions to drive your business forward. Specializing in modern technologies, we ensure seamless, future-proof digital experiences.
                     </p>
                     <Flex className="gap-[16px] mt-4 flex-col md:flex-row">
                         {/*<Button variant="outlined" className="w-full md:w-max">*/}
