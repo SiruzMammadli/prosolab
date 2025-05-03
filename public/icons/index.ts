@@ -1,18 +1,22 @@
-import ArrowRightIcon from '@/public/icons/arrow-right-icon.svg';
-import PhoneIcon from '@/public/icons/phone-icon.svg';
-import PercentIcon from '@/public/icons/percent-icon.svg';
-import PlusIcon from '@/public/icons/plus-icon.svg';
-import DollarIcon from '@/public/icons/dollar-icon.svg';
-import WebAppIcon from '@/public/icons/web-app-icon.svg';
-import MobileAppIcon from '@/public/icons/mobile-app-icon.svg';
-import DesktopAppIcon from '@/public/icons/desktop-app-icon.svg';
-import InstagramIcon from '@/public/icons/instagram-icon.svg';
-import FacebookIcon from '@/public/icons/facebook-icon.svg';
-import XLogoIcon from '@/public/icons/x-logo-icon.svg';
-import CheckIcon from '@/public/icons/check-icon.svg';
-import ChevronLeftIcon from '@/public/icons/chevron-left-icon.svg';
+import ArrowRightIcon from './arrow-right-icon.svg';
+import PhoneIcon from './phone-icon.svg';
+import PercentIcon from './percent-icon.svg';
+import PlusIcon from './plus-icon.svg';
+import DollarIcon from './dollar-icon.svg';
+import WebAppIcon from './web-app-icon.svg';
+import MobileAppIcon from './mobile-app-icon.svg';
+import DesktopAppIcon from './desktop-app-icon.svg';
+import InstagramIcon from './instagram-icon.svg';
+import FacebookIcon from './facebook-icon.svg';
+import XLogoIcon from './x-logo-icon.svg';
+import CheckIcon from './check-icon.svg';
+import ChevronLeftIcon from './chevron-left-icon.svg';
+import TrashIcon from './trash-icon.svg';
+import EyeIcon from './eye-icon.svg';
 
 export {
+    EyeIcon,
+    TrashIcon,
     ChevronLeftIcon,
     CheckIcon,
     XLogoIcon,
