@@ -48,7 +48,7 @@ type ButtonProps = {
 
 const styles = {
     _: (classNames?: string, variant?: ButtonProps["variant"]) => cn(
-        'cursor-pointer px-6 h-[50px] rounded-xl content-center text-center flex items-center justify-center transition-colors [&_svg]:w-[20px] [&_svg]:h-[20px] gap-x-2',
+        'cursor-pointer px-6 h-[45px] rounded-xl content-center text-center flex items-center justify-center transition-colors [&_svg]:w-[20px] [&_svg]:h-[20px] gap-x-2',
         [
             variant === 'primary' && 'bg-blue-500 text-white border-[2px] border-blue-500 hover:bg-blue-400 hover:border-blue-400',
             variant === 'outlined' && 'border-[2px] border-gray-200 text-gray-600 font-medium',

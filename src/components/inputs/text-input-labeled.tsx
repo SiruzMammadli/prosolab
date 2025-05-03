@@ -17,6 +17,7 @@ export default (props: Readonly<TextInputLabeledProps>) => {
                 placeholder={props.placeholder}
                 onChange={props.onChange}
                 name={props.name}
+                type={props.type}
             />
         </div>
     )
