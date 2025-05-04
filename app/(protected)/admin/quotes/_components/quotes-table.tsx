@@ -1,30 +1,29 @@
 'use client';
 import Table from "@/src/components/table/table";
-import {Button, Flex} from "@/src/components";
+import {Button, Flex, SomethingWentWrong} from "@/src/components";
 import {QuotesTablePaginationButton} from "@/app/(protected)/admin/quotes/_components";
 import {useState} from "react";
-import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
+import {useMutation, useQuery} from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
-import {EyeIcon, TrashIcon} from "@/public/icons";
+import {TrashIcon} from "@/public/icons";
+import {cn} from "@/src/utils";
+import {generatePages} from "@/src/components/table/utils";
+import {Quote} from '../_types'
+import {getBudget} from "@/app/(protected)/admin/quotes/_utils";
+import {deleteQuote, getQuotesWithPagination} from "@/app/(protected)/admin/quotes/_services";
 
-type Quote = {
-    id: number;
-    fullname: string;
-    email: string;
-    budget: number;
-    description: string;
-};
 export default () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
-    const {data: quotes} = useQuery({
-        queryKey: ["technologies", currentPage],
-        queryFn: async () => {
-            return (await axios.get(`/api/v1/quotes?currentPage=${currentPage}&pageSize=6`, {timeout: 5000})).data;
-        },
+    const {data: quotes, isError, refetch} = useQuery({
+        queryKey: ["quotes", currentPage],
+        queryFn: async () => await getQuotesWithPagination(currentPage),
         refetchOnMount: false,
         refetchOnWindowFocus: false,
+    });
+
+    const mutation = useMutation({
+        mutationFn: async (id: Quote["id"]) => await deleteQuote(id),
     });
 
     return (
@@ -40,7 +39,7 @@ export default () => {
                         <Table.Header>Actions</Table.Header>
                     </Table.Row>
                 </Table.Head>
-                {quotes ? (
+                {quotes && !isError ? (
                     <>
                         <Table.Body>
                             {quotes.items.map((quote: Quote) => (
@@ -48,17 +47,17 @@ export default () => {
                                     <Table.Cell>{quote.id}</Table.Cell>
                                     <Table.Cell>{quote.fullname}</Table.Cell>
                                     <Table.Cell>{quote.email}</Table.Cell>
-                                    <Table.Cell>{quote.budget}</Table.Cell>
+                                    <Table.Cell>{getBudget(quote.budget)}</Table.Cell>
                                     <Table.Cell>{quote.description}</Table.Cell>
                                     <Table.Cell>
                                         <Flex className="gap-[8px]">
                                             <Button.Icon
-                                                icon={EyeIcon}
-                                                className="rounded-lg w-[36px] h-[36px] [&>svg]:w-[20px]! [&>svg]:h-[20px]!"
-                                            />
-                                            <Button.Icon
                                                 icon={TrashIcon}
-                                                className="rounded-lg w-[36px] h-[36px] [&>svg]:w-[20px]! [&>svg]:h-[20px]! text-red-700 bg-red-50 border-red-100"
+                                                className={cn(
+                                                    "rounded-lg w-[36px] h-[36px] [&>svg]:w-[20px]! [&>svg]:h-[20px]!",
+                                                    "text-red-700 bg-red-50 border-red-100",
+                                                    "hover:bg-red-100"
+                                                )}
                                             />
                                         </Flex>
                                     </Table.Cell>
@@ -70,14 +69,17 @@ export default () => {
                             <td colSpan={6} className="py-[12px] px-[16px]">
                                 <Flex justifyContent="flex-end">
                                     <Flex as="ul" className="gap-x-[4px]">
-                                        {Array.from({length: quotes.total_count / quotes.page_size}, (_, key) => ++key)
-                                            .map((val) => (
-                                                <li key={val}>
+                                        {generatePages(quotes.total_count / quotes.page_size, quotes.current_page)
+                                            .map((val, key: number) => (
+                                                <li key={key}>
                                                     <QuotesTablePaginationButton
-                                                        number={`${val}`}
                                                         isCurrent={val === currentPage}
-                                                        onClick={() => setCurrentPage(val)}
-                                                    />
+                                                        onClick={typeof val === 'number'
+                                                            ? () => setCurrentPage(val)
+                                                            : undefined}
+                                                    >
+                                                        {val}
+                                                    </QuotesTablePaginationButton>
                                                 </li>
                                             ))}
                                     </Flex>
@@ -88,8 +90,16 @@ export default () => {
                     </>
                 ) : null}
             </Table>
-            {!quotes ? (
+            {!quotes && !isError ? (
                 <Skeleton count={5} className="h-[100px]"/>
+            ) : null}
+            {isError ? (
+                <SomethingWentWrong
+                    onClick={async () => {
+                        await refetch();
+                    }}
+                    className="mt-[32px]"
+                />
             ) : null}
         </>
     )

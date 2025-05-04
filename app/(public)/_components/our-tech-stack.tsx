@@ -6,7 +6,7 @@ import {useQuery} from "@tanstack/react-query";
 import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
-import {Button, Flex} from "@/src/components";
+import {SomethingWentWrong} from "@/src/components";
 
 export default () => {
     const {data: techStackData, error, refetch} = useQuery({
@@ -33,21 +33,7 @@ export default () => {
                         <Skeleton count={3} className="h-[75px]" borderRadius={16}/>
                     )
                 ) : (
-                    <Flex
-                        direction="column"
-                        justifyContent="center"
-                        alignItems="center"
-                        className="text-[20px] font-medium gap-y-[8px]"
-                    >
-                        <h3>Oh no, something went wrong!</h3>
-                        <Button
-                            variant="outlined"
-                            className="h-[40px] text-[15px]"
-                            onClick={async () => {await refetch();}}
-                        >
-                            Refresh
-                        </Button>
-                    </Flex>
+                    <SomethingWentWrong onClick={async () => {await refetch();}}/>
                 )}
             </div>
         </SectionWithHeading>
