@@ -7,8 +7,10 @@ import Checkbox from './inputs/checkbox';
 import CheckboxLabeled from './inputs/checkbox-labeled';
 import Textarea from './inputs/textarea';
 import Spinner from './spinner';
+import SomethingWentWrong from './something-went-wrong';
 
 export {
+    SomethingWentWrong,
     Spinner,
     Textarea,
     CheckboxLabeled,
