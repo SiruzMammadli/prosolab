@@ -14,8 +14,7 @@ export default () => {
             setCurrentScroll(scroll => {
                 if (window.scrollY > 50 && window.scrollY > scroll) {
                     setHeaderClasses("-translate-y-[90px]")
-                }
-                else setHeaderClasses("");
+                } else setHeaderClasses("");
                 return window.scrollY;
             });
         }, 100);
@@ -30,7 +29,10 @@ export default () => {
             headerClasses
         )}>
             <Flex as={Container} justifyContent="space-between">
-                <Link href="/" className="text-2xl md:text-3xl font-semibold">PROSOLAB</Link>
+                <Link href="/" className="text-2xl md:text-3xl font-semibold">
+                    PROSOLAB
+                    <sub className="text-[12px] text-red-600 ml-[2px]">BETA</sub>
+                </Link>
                 <Flex>
                     <Button className="h-[40px] px-4" href="/#get-a-quote">
                         Request a Quote
