@@ -1,5 +1,5 @@
 import {QuotesTable} from "@/app/(protected)/admin/quotes/_components";
-import {Button, Flex} from "@/src/components";
+import {Flex} from "@/src/components";
 
 export default () => {
     return (
