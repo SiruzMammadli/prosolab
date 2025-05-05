@@ -3,7 +3,7 @@ import Table from "@/src/components/table/table";
 import {Button, Flex, SomethingWentWrong} from "@/src/components";
 import {QuotesTablePaginationButton} from "@/app/(protected)/admin/quotes/_components";
 import {useState} from "react";
-import {useMutation, useQuery} from "@tanstack/react-query";
+import {useMutation, useQuery, useQueryClient} from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css';
 import {TrashIcon} from "@/public/icons";
@@ -12,6 +12,7 @@ import {generatePages} from "@/src/components/table/utils";
 import {Quote} from '../_types'
 import {getBudget} from "@/app/(protected)/admin/quotes/_utils";
 import {deleteQuote, getQuotesWithPagination} from "@/app/(protected)/admin/quotes/_services";
+import toast from "react-hot-toast";
 
 export default () => {
     const [currentPage, setCurrentPage] = useState<number>(1);
@@ -21,9 +22,18 @@ export default () => {
         refetchOnMount: false,
         refetchOnWindowFocus: false,
     });
+    const queryClient = useQueryClient();
 
     const mutation = useMutation({
-        mutationFn: async (id: Quote["id"]) => await deleteQuote(id),
+        mutationFn: async (id: Quote["id"]) => {
+            const res = await deleteQuote(id);
+            if (res) {
+                await queryClient.invalidateQueries({queryKey: ["quotes", currentPage]})
+                    .then(() => {
+                        toast.success('Quote deleted successfully!');
+                    });
+            }
+        },
     });
 
     return (
@@ -58,6 +68,7 @@ export default () => {
                                                     "text-red-700 bg-red-50 border-red-100",
                                                     "hover:bg-red-100"
                                                 )}
+                                                onClick={() => mutation.mutate(quote.id)}
                                             />
                                         </Flex>
                                     </Table.Cell>
@@ -69,7 +80,7 @@ export default () => {
                             <td colSpan={6} className="py-[12px] px-[16px]">
                                 <Flex justifyContent="flex-end">
                                     <Flex as="ul" className="gap-x-[4px]">
-                                        {generatePages(quotes.total_count / quotes.page_size, quotes.current_page)
+                                        {generatePages(Math.ceil(quotes.total_count / quotes.page_size), quotes.current_page)
                                             .map((val, key: number) => (
                                                 <li key={key}>
                                                     <QuotesTablePaginationButton
