@@ -130,7 +130,8 @@ function validateQuote(
     const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|.(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     if (!inputValues.email || !emailRegex.test(inputValues.email)) errors.email = "Please enter a valid email address";
     if (!checkedServices.size) errors.checkedServices = "Please select at least one service";
-    if (!projectDetails || projectDetails.trim() === "" || projectDetails.length < 10) errors.projectDetails = "Project details cannot be empty";
+    if (!projectDetails || projectDetails.trim() === "") errors.projectDetails = "Project details cannot be empty";
+    else if (projectDetails.length > 0 && projectDetails.length < 10) errors.projectDetails = "Project details must be at least 10 characters";
     const isSuccess = Object.keys(errors).length === 0;
     if (!isSuccess) Object.values(errors).forEach((error) => { toast.error(error); });
     return { isSuccess, errors };

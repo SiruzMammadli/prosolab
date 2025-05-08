@@ -13,7 +13,7 @@ export default ({item}: { item: { name: string; thumbnail: string; } }) => {
         >
             <Image
                 className="w-[50px] h-[50px] object-contain"
-                src={`/images/${item.thumbnail}`}
+                src={"/images/" + item.thumbnail}
                 alt={item.name}
                 width={50}
                 height={50}
