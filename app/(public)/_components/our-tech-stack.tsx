@@ -3,16 +3,16 @@ import {TextGradient} from "@/app/(public)/_components/_shared";
 import {SectionWithHeading} from "@/app/(public)/_components";
 import {TechStackWidget} from "@/app/(public)/_components/_our_tech_stack";
 import {useQuery} from "@tanstack/react-query";
-import axios from "axios";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {SomethingWentWrong} from "@/src/components";
+import http from '@/src/utils/axios';
 
 export default () => {
     const {data: techStackData, error, refetch} = useQuery({
         queryKey: ["technologies"],
         queryFn: async () => {
-            return (await axios.get("/api/v1/technologies", {timeout: 5000})).data;
+            return (await http.get("/technologies")).data;
         },
         refetchOnMount: false,
         refetchOnWindowFocus: false,
