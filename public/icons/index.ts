@@ -13,8 +13,10 @@ import CheckIcon from './check-icon.svg';
 import ChevronLeftIcon from './chevron-left-icon.svg';
 import TrashIcon from './trash-icon.svg';
 import EyeIcon from './eye-icon.svg';
+import LogoutIcon from './logout-icon.svg';
 
 export {
+    LogoutIcon,
     EyeIcon,
     TrashIcon,
     ChevronLeftIcon,

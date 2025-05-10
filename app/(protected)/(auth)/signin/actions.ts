@@ -29,6 +29,6 @@ export const signin = async (_: unknown, formData: FormData) => {
 
     if (response.status === StatusCode.Ok) {
         await setTokensCookie(response.data.access_token, response.data.refresh_token);
-        redirect("/admin");
+        redirect("/admin/quotes");
     }
 }

@@ -13,6 +13,7 @@ export async function middleware({url, nextUrl, cookies}: NextRequest) {
     const hasPublicRoute = isPublicRoute(nextUrl.pathname);
 
     if (hasPublicRoute && isVerifiedToken) return NextResponse.redirect(new URL('/admin', url));
+    if (!hasPublicRoute && !accessToken) return NextResponse.redirect(new URL('/signin', url));
     if (!isVerifiedToken && accessToken) {
         const response = await axios.post(process.env.NEXT_PUBLIC_API_V1_URL + "/auth/refresh-token", {
             refresh_token: await getRefreshToken(),
