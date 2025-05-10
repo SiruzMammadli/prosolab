@@ -12,17 +12,15 @@ export async function middleware({url, nextUrl, cookies}: NextRequest) {
     const isVerifiedToken = accessToken && verifyJwtToken(accessToken);
     const hasPublicRoute = isPublicRoute(nextUrl.pathname);
 
-    if (nextUrl.pathname === '/') return NextResponse.next();
-    if (hasPublicRoute) return isVerifiedToken ? NextResponse.redirect(new URL('/admin', url)) : NextResponse.next();
-    if (!hasPublicRoute && !isVerifiedToken) {
-        if (accessToken) {
-            const response = await axios.post(process.env.NEXT_PUBLIC_API_V1_URL + "/auth/refresh-token", {
-                refresh_token: await getRefreshToken(),
-            }, {headers: {Authorization: "Bearer " + accessToken}});
-            if (response.status === StatusCode.Ok) {
-                await setTokensCookie(response.data.access_token, response.data.refresh_token);
-                return NextResponse.next();
-            }
+    if (hasPublicRoute && isVerifiedToken) return NextResponse.redirect(new URL('/admin', url));
+    if (!isVerifiedToken && accessToken) {
+        const response = await axios.post(process.env.NEXT_PUBLIC_API_V1_URL + "/auth/refresh-token", {
+            refresh_token: await getRefreshToken(),
+        }, {headers: {Authorization: "Bearer " + accessToken}});
+
+        if (response.status === StatusCode.Ok) {
+            await setTokensCookie(response.data.access_token, response.data.refresh_token);
+            return hasPublicRoute ? NextResponse.redirect(new URL('/admin', url)) : NextResponse.next();
         }
         return NextResponse.redirect(new URL('/signin', url));
     }
@@ -32,7 +30,6 @@ export async function middleware({url, nextUrl, cookies}: NextRequest) {
 export const config = {
     matcher: [
         '/signin',
-        '/admin/:path*',
-        '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt).*)'
+        '/admin/:path*'
     ],
 }

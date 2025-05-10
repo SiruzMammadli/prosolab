@@ -6,13 +6,13 @@ import {useQuery} from "@tanstack/react-query";
 import Skeleton from "react-loading-skeleton";
 import 'react-loading-skeleton/dist/skeleton.css'
 import {SomethingWentWrong} from "@/src/components";
-import http from '@/src/utils/axios';
+import axios from "axios";
 
 export default () => {
     const {data: techStackData, error, refetch} = useQuery({
         queryKey: ["technologies"],
         queryFn: async () => {
-            return (await http.get("/technologies")).data;
+            return (await axios.get(process.env.NEXT_PUBLIC_API_V1_URL + "/technologies", {timeout: 5000})).data;
         },
         refetchOnMount: false,
         refetchOnWindowFocus: false,
@@ -33,7 +33,9 @@ export default () => {
                         <Skeleton count={3} className="h-[75px]" borderRadius={16}/>
                     )
                 ) : (
-                    <SomethingWentWrong onClick={async () => {await refetch();}}/>
+                    <SomethingWentWrong onClick={async () => {
+                        await refetch();
+                    }}/>
                 )}
             </div>
         </SectionWithHeading>
